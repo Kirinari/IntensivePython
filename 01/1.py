@@ -8,7 +8,7 @@ def square_roots(a, b, c):
 
 assert square_roots(1, -2, 1) == (1.0, 1.0)
 assert square_roots(1, 2, 1) == (-1.0, -1.0)
-assert square_roots(1, 1, 1) == None
+assert square_roots(1, 1, 1) is None
 assert square_roots(1, 0, 0) == (0.0, 0.0)
 assert square_roots(1, 0, -4) == (2.0, -2.0)
-assert square_roots(1, 4, 5) == None
+assert square_roots(1, 4, 5) is None
