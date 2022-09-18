@@ -1,0 +1,2 @@
+# IntensivePython
+VK MADE course
