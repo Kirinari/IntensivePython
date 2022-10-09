@@ -1,9 +1,12 @@
+"""
+hello pylint
+"""
 class CustomList(list):
-    def __init__(self, *argc, **kwargs):
-        super().__init__(*argc, **kwargs)
-
+    """
+    hello pylint
+    """
     def __sub__(self, other):
-        if isinstance(other, list) or isinstance(other, CustomList):
+        if isinstance(other, (CustomList, list)):
             len_self = len(self)
             len_other = len(other)
             result = [0] * max(len_self, len_other)
@@ -14,11 +17,10 @@ class CustomList(list):
                 result[i] = result[i] - other[i]
             return CustomList(result)
 
-        else:
-            raise TypeError(f"unsupported operand type(s) for -")
+        raise TypeError(f"unsupported operand type(s) for -")
 
     def __rsub__(self, other):
-        if isinstance(other, list):
+        if isinstance(other, (CustomList, list)):
             len_self = len(self)
             len_other = len(other)
             result = [0] * max(len_self, len_other)
@@ -27,11 +29,11 @@ class CustomList(list):
             for i in range(len_other):
                 result[i] = result[i] + other[i]
             return CustomList(result)
-        else:
-            raise TypeError(f"unsupported operand type(s) for -")
+
+        raise TypeError(f"unsupported operand type(s) for -")
 
     def __add__(self, other):
-        if isinstance(other, list) or isinstance(other, CustomList):
+        if isinstance(other, (CustomList, list)):
             len_self = len(self)
             len_other = len(other)
             result = [0] * max(len_self, len_other)
@@ -42,8 +44,8 @@ class CustomList(list):
                 result[i] = result[i] + other[i]
 
             return CustomList(result)
-        else:
-            raise TypeError(f"unsupported operand type(s) for +")
+
+        raise TypeError(f"unsupported operand type(s) for +")
 
     def __radd__(self, other):
         if isinstance(other, list):
@@ -57,8 +59,8 @@ class CustomList(list):
                 result[i] = result[i] + other[i]
 
             return CustomList(result)
-        else:
-            raise TypeError(f"unsupported operand type(s) for +")
+
+        raise TypeError(f"unsupported operand type(s) for +")
 
     def __lt__(self, other):
         return sum(self) < sum(other)
@@ -80,7 +82,7 @@ class CustomList(list):
 
     def __str__(self):
         result = ""
-        for i in range(len(self)):
-            result = result + str(self[i]) + ' '
+        for i in self:
+            result = result + str(i) + ' '
         result = result + "\nsum: " + str(sum(self))
         return result
