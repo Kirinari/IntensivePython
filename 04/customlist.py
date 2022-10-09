@@ -1,6 +1,8 @@
 """
 hello pylint
 """
+
+
 class CustomList(list):
     """
     hello pylint
