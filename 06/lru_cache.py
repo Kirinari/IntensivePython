@@ -33,11 +33,30 @@ class LRUCache:
 
     def set(self, key, value):
         """hello pylint"""
-        if len(self.var) == self.maxlen:
-            self.var[0] = key
-            self.values[0] = value
-            self.var.rotate()
-            self.values.rotate()
-        else:
-            self.var.append(key)
-            self.values.append(value)
+        
+        if key not in self.var:
+            if len(self.var) == self.maxlen:
+                self.var[0] = key
+                self.values[0] = value
+                self.var.rotate()
+                self.values.rotate()
+            else:
+                self.var.append(key)
+                self.values.append(value)
+                i = 0
+            return
+        
+        cur_len = len(self.var)
+        i = 0
+        while i < cur_len and self.var[i] != key:
+            i += 1
+        self.values[i] = value
+        j = i
+        while j < cur_len - 1:
+            tmp1 = self.var[j]
+            self.var[j] = self.var[j + 1]
+            self.var[j + 1] = tmp1
+            tmp2 = self.values[j]
+            self.values[j] = self.values[j + 1]
+            self.values[j + 1] = tmp2
+            j += 1
