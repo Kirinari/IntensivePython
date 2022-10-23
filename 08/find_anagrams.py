@@ -53,13 +53,3 @@ def find_anagrams(text, pattern):
         result.append(textlen - patternlen)
 
     return result
-
-
-assert find_anagrams("abcba", "abc") == [0, 2]
-assert find_anagrams("aaa", "a") == [0, 1, 2]
-assert find_anagrams("abc cba xabcd", 'abc') == [0, 4, 9]
-assert find_anagrams("ффф", 'ф') == [0, 1, 2]
-assert find_anagrams("trccccytvbabc", "cc") == [2, 3, 4]
-assert find_anagrams("aaababaa", "aaba") == [0, 1, 4]
-assert find_anagrams("ракета", "карета") == [0]
-assert find_anagrams("тут нет анаграмм", "эх") == []
