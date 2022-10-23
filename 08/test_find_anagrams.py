@@ -3,10 +3,6 @@ from find_anagrams import find_anagrams
 
 
 class TestFindAnagrams(TestCase):
-    def test_empty_text(self):
-        string, pattern = "", "hello"
-        self.assertEqual([], find_anagrams(string, pattern))
-
     def test_find1(self):
         self.assertEqual(find_anagrams("abcba", "abc"), [0, 2])
 
