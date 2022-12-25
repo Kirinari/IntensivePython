@@ -89,7 +89,9 @@ if __name__ == "lru_cache_logs":
 
     for param in sys.argv:
         if param == "-s":
+            add_formatter = logging.Formatter(
+             "[%(levelname)s] - %(message)s")
             shandler = logging.StreamHandler()
-            shandler.setFormatter(formatter)
+            shandler.setFormatter(add_formatter)
             shandler.setLevel(logging.INFO)
             logger.addHandler(shandler)
