@@ -86,12 +86,19 @@ if __name__ == "lru_cache_logs":
     fhandler.setLevel(logging.INFO)
 
     logger.addHandler(fhandler)
+    print(sys.argv)
+    if len(sys.argv) > 1 and '-s' in sys.argv:
+        add_formatter = logging.Formatter(
+            "[%(levelname)s] - %(message)s")
+        shandler = logging.StreamHandler()
+        shandler.setFormatter(add_formatter)
+        shandler.setLevel(logging.INFO)
+        logger.addHandler(shandler)
 
-    for param in sys.argv:
-        if param == "-s":
-            add_formatter = logging.Formatter(
-             "[%(levelname)s] - %(message)s")
-            shandler = logging.StreamHandler()
-            shandler.setFormatter(add_formatter)
-            shandler.setLevel(logging.INFO)
-            logger.addHandler(shandler)
+    cache = LRUCache(limit=2)
+    cache.set('k1', 'val1')  # set отсутствующего ключа
+    cache.set('k2', 'val2')  # set отсутствующего ключа
+    cache.set('k3', 'val3')  # set отсутствующего ключа, когда достигнута ёмкость
+    k1_value = cache.get('k1')  # get существующего ключа
+    k2_value = cache.get('k2')  # get существующего ключа
+    not_found_value = cache.get('k5')  # get отсутствующего ключа
