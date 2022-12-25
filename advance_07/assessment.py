@@ -13,12 +13,12 @@ def predict_message_mood(
     bad_thresholds: float = 0.3,
     good_thresholds: float = 0.8,
 ) -> str:
-    if model.predict(message) < bad_thresholds:
+    res = model.predict(message)
+    if res < bad_thresholds:
         return "неуд"
-    elif model.predict(message) > good_thresholds:
+    elif res > good_thresholds:
         return "отл"
     else:
         return "норм"
     
 model = SomeModel()
-assert predict_message_mood("Чапаев и пустота", model) == "норм"
