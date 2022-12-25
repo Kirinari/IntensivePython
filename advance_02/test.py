@@ -48,7 +48,7 @@ class TestClient(unittest.TestCase):
         resp = io.StringIO()
         def mock_print(data, thread_id): print(data.decode(), file=resp)
         urls = [
-            b"https://en.wikipedia.org/wiki/AD_500", b"https://en.wikipedia.org/wiki/AD_500"
+            "https://en.wikipedia.org/wiki/AD_500", "https://en.wikipedia.org/wiki/AD_500"
             ]
 
         client_ = client.Client(urls=urls)
